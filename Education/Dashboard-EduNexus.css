@@ -1,0 +1,209 @@
+/* Keyframes for dark background animation */
+@keyframes darkBackgroundAnimation {
+    0% {
+        background-color: #111;
+    }
+    50% {
+        background-color: #333;
+    }
+    100% {
+        background-color: #111;
+    }
+}
+
+/* Apply the background animation to the body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+    background-size: 400% 400%;
+    animation: darkBackgroundAnimation 15s ease infinite;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+h1 {
+    margin: 0;
+    color: white;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.user-info img {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.user-info img:hover {
+    transform: scale(1.1);
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 80px 0; /* Adjusted to avoid overlap with fixed header */
+}
+
+.upload-box {
+    margin: 10px;
+}
+
+.upload-label {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 auto;
+}
+
+.upload-btn {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #7ed957;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 25px;
+    border: none;
+    margin: 10px auto; /* Center button and add spacing */
+}
+
+.upload-btn:active {
+    transform: none;
+    background-color: inherit;
+}
+
+.upload-btn:focus {
+    outline: none;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Set a max-width for larger screens */
+    margin: 0 auto;
+}
+
+.filter-btn {
+    padding: 8px 12px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 0 5px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+}
+
+.main-filter-btn {
+    padding: 8px 12px;
+    background-color: #7ed957;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#filter-date,
+#filter-name,
+#filter-file-id {
+    flex: 1;
+}
+
+/* Files List */
+.files-list {
+    width: 100%;
+    margin: 0 auto;
+    list-style-type: none;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #d9d9d9;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.file-item:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.file-date, .file-name, .file-zip {
+    flex: 1;
+    text-align: center;
+}
+
+.remove-btn {
+    padding: 5px 10px;
+    background-color: #f76c6c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

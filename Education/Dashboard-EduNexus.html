@@ -1,0 +1,287 @@
+<?php
+session_start(); // Start session at the beginning
+
+// Check if user is logged in
+if (!isset($_SESSION['user'])) {
+    header("Location: login.html"); // Redirect to login if not authenticated
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - EduNexus</title>
+    <link rel="stylesheet" href="Dashboard-EduNexus.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #011422, #122266);
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .title {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            margin-left: 10px;
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .user-info img:hover {
+            transform: scale(1.1);
+        }
+
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 80px 0; /* Adjusted to avoid overlap with fixed header */
+        }
+
+        .upload-selection {
+            background-color: #1B274D;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .upload-selection label {
+            margin-bottom: 10px;
+        }
+
+        .upload-selection select {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333766;
+            background-color: #1B274D;
+            color: #fff;
+        }
+
+        .upload-form {
+            background-color: #1B274D;
+            padding: 20px;
+            border-radius: 10px;
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .upload-form.active {
+            display: flex; /* Show only the active form */
+        }
+
+        .upload-form label {
+            margin-bottom: 5px;
+        }
+
+        .upload-form input[type="file"] {
+            margin-bottom: 15px;
+        }
+
+        .upload-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333766;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-form button:hover {
+            background-color: #2d3e6b;
+        }
+
+        .log-section {
+            background-color: #1B274D;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            height: 500px;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .log-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .log-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .no-logs {
+            text-align: center;
+        }
+
+        .logs .log-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #2a3d6b;
+        }
+
+        .log-item .remove-btn {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .log-item .remove-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .hamburger-icon {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="EduNexusBg.png" class="edunexus-logo" alt="EduNexus Logo" />
+        </div>
+        <h1 class="title">EduNexus</h1>
+        <div class="user-info">
+            <span>Hello, <?php echo htmlspecialchars($_SESSION['user']); ?></span>
+            <img src="user_icon.png" alt="User Icon" />
+            <button aria-label="Menu" class="hamburger-btn">
+                <img src="hamburger.png" alt="Hamburger Icon" class="hamburger-icon" />
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="upload-section">
+            <!-- Class selection dropdown -->
+            <div class="upload-selection">
+                <label for="class-select">Select Class:</label>
+                <select id="class-select">
+                    <option value="">--Select a class--</option>
+                    <option value="class8">Class 8</option>
+                    <option value="class9">Class 9</option>
+                    <option value="class10">Class 10</option>
+                </select>
+            </div>
+
+            <!-- Form for class 8 uploads -->
+            <div class="upload-form" id="class8-form">
+                <h2>Class 8 Uploads</h2>
+                <form action="upload_class8.php" method="post" enctype="multipart/form-data">
+                    <label for="class8_zip">ZIP File:</label>
+                    <input type="file" name="class8_zip" required><br><br>
+                    <label for="class8_csv">CSV File:</label>
+                    <input type="file" name="class8_csv" required><br><br>
+                    <button type="submit">Upload Class 8 Files</button>
+                </form>
+            </div>
+
+            <!-- Form for class 9 uploads -->
+            <div class="upload-form" id="class9-form">
+                <h2>Class 9 Uploads</h2>
+                <form action="upload_class9.php" method="post" enctype="multipart/form-data">
+                    <label for="class9_zip">ZIP File:</label>
+                    <input type="file" name="class9_zip" required><br><br>
+                    <label for="class9_csv">CSV File:</label>
+                    <input type="file" name="class9_csv" required><br><br>
+                    <button type="submit">Upload Class 9 Files</button>
+                </form>
+            </div>
+
+            <!-- Form for class 10 uploads -->
+            <div class="upload-form" id="class10-form">
+                <h2>Class 10 Uploads</h2>
+                <form action="upload_class10.php" method="post" enctype="multipart/form-data">
+                    <label for="class10_zip">ZIP File:</label>
+                    <input type="file" name="class10_zip" required><br><br>
+                    <label for="class10_csv">CSV File:</label>
+                    <input type="file" name="class10_csv" required><br><br>
+                    <button type="submit">Upload Class 10 Files</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="log-section" id="log-section">
+            <div class="log-header">LOGS</div>
+            <div class="log-content">
+                <div class="no-logs" id="no-logs">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFMzYzIwh6vXI7hHX3_UYtxTiKI0vJpttsrA&s" alt="No Logs Icon" style="width: 20%; height: 20%; padding-top: 60px;">
+                    <p style="color: #444e6d; font-size: 50px; font-weight: bold; font-family: sans-serif;">No Logs Yet!</p>
+                </div>
+                <div class="logs" id="logs">
+                    <!-- Logs will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.getElementById('class-select').addEventListener('change', function() {
+            var selectedClass = this.value;
+            var forms = document.querySelectorAll('.upload-form');
+
+            forms.forEach(function(form) {
+                form.classList.remove('active');
+                if (form.id === selectedClass + '-form') {
+                    form.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
