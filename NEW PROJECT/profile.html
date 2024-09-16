@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - EduNexus</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e2d5d4;
+        }
+
+        header {
+            background-color: #7ed957;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 50px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .user-info span {
+            margin-left: 5px;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+
+        .profile-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+        }
+
+        .profile-info p {
+            margin: 8px 0;
+            font-size: 18px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .button-group #update-profile {
+            background-color: #4CAF50;
+        }
+
+        .button-group #logout {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="EduNexusBg.png" alt="EduNexus Logo" />
+            </div>
+            <div class="user-info">
+                <span id="greeting">Hello, User</span>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="profile-header">
+            <img src="user_icon.png" alt="User Icon" />
+            <h1 id="username">User Name</h1>
+        </div>
+        <div class="profile-info">
+            <p><strong>Email:</strong> <span id="email">user@example.com</span></p>
+            <p><strong>Phone:</strong> <span id="phone">123-456-7890</span></p>
+        </div>
+        <div class="button-group">
+            <button id="update-profile">Update Profile</button>
+            <button id="logout" onclick="handleLogout()">Log Out</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Simulate fetching user info from localStorage
+            const userInfo = localStorage.getItem('loggedInUser');
+
+            // If userInfo exists, parse it and display username and other details
+            if (userInfo) {
+                const user = JSON.parse(userInfo);
+                document.getElementById('greeting').textContent = `Hello, ${user.username}`;
+                document.getElementById('username').textContent = user.username;
+                // Assuming email and phone are stored in userInfo
+                document.getElementById('email').textContent = user.email || 'Not Provided';
+                document.getElementById('phone').textContent = user.phone || 'Not Provided';
+            }
+
+            // Function to handle the logout process
+            function handleLogout() {
+                // Perform any necessary cleanup here (e.g., clearing session data)
+
+                // Remove userInfo from localStorage
+                localStorage.removeItem('loggedInUser');
+
+                // Redirect to the login page
+                window.location.href = 'login.html';
+            }
+
+            // Attach the logout handler to the button
+            document.getElementById('logout').addEventListener('click', handleLogout);
+        });
+    </script>
+</body>
+</html>

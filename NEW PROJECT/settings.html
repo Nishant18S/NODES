@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings EduNexus</title>
+    <link rel="icon" type="image/x-icon" href="EduNexusBg.png" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #7ed957;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: headerAnimation 2s ease-in-out infinite;
+        }
+
+        @keyframes headerAnimation {
+            0% {
+                background-color: #7ed957;
+            }
+            50% {
+                background-color: #5db34f;
+            }
+            100% {
+                background-color: #7ed957;
+            }
+        }
+
+        .logo img {
+            max-width: 50px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: logoAnimation 2s ease-in-out infinite;
+        }
+
+        @keyframes logoAnimation {
+            0% {
+                transform: translateY(-50%) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50%) rotate(10deg);
+            }
+            100% {
+                transform: translateY(-50%) rotate(0deg);
+            }
+        }
+
+        header h1 {
+            margin: 0;
+            color: white;
+            font-size: 24px;
+        }
+
+        .settings-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-image: linear-gradient(to right bottom, red, rgb(38, 0, 255));
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+            animation: containerAnimation 2s ease-in-out;
+        }
+
+        @keyframes containerAnimation {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: profileAnimation 2s ease-in-out;
+        }
+
+        @keyframes profileAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-section img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-section img:hover {
+            transform: scale(1.1);
+        }
+
+        .settings-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .settings-options button {
+            flex: 1;
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #7ed957;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: buttonAnimation 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonAnimation {
+            0% {
+                background-color: #7ed957;
+                transform: scale(1);
+            }
+            50% {
+                background-color: #5db34f;
+                transform: scale(1.05);
+            }
+            100% {
+                background-color: #7ed957;
+                transform: scale(1);
+            }
+        }
+
+        .settings-options button.active {
+            background-color: #5db34f;
+        }
+
+        .settings-options button:hover {
+            background-color: #66c760;
+            transform: scale(1.05);
+        }
+
+        .form-container {
+            display: none;
+            animation: formFadeIn 1s ease-in-out;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        @keyframes formFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group input[type="file"]:focus {
+            border-color: #7ed957;
+            outline: none;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #7ed957;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #66c760;
+        }
+
+        #return-home-btn {
+            position: absolute;
+            bottom: 35px;
+            right: 25px;
+            background-color: #7ed957;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #return-home-btn:hover {
+            background-color: #66c760;
+            transform: scale(1.05);
+        }
+        #new-username,#new-photo
+        {
+            width: 96%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="EduNexusBg.png" alt="EduNexus Logo" />
+        </div>
+        <h1>Account Settings</h1>
+    </header>
+
+    <div class="settings-container">
+        <div class="profile-section">
+            <img src="user_icon.png" alt="Profile Picture" id="profile-picture" />
+            <h2 id="username-display">Default Username</h2>
+        </div>
+
+        <div class="settings-options">
+            <button id="change-username-btn" class="active">Change Username</button>
+            <button id="change-photo-btn">Change Profile Photo</button>
+            <button id="change-password-btn" onclick="window.location.href='forgot_password.html'">Change Password</button>
+
+        </div>
+
+        <div class="forms-wrapper">
+            <div id="username-form" class="form-container active">
+                <form>
+                    <div class="form-group">
+                        <label for="new-username">New Username:</label>
+                        <input type="text" id="new-username" name="new-username" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Change Username" />
+                    </div>
+                </form>
+            </div>
+
+            <div id="photo-form" class="form-container">
+                <form>
+                    <div class="form-group">
+                        <label for="new-photo">New Profile Photo:</label>
+                        <input type="file" id="new-photo" name="new-photo" accept="image/*" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Change Photo" />
+                    </div>
+                </form>
+            </div>
+
+            <!--<div id="password-form" class="form-container">
+                <form>
+                    <div class="form-group">
+                        <label for="current-password">Current Password:</label>
+                        <input type="password" id="current-password" name="current-password" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">New Password:</label>
+                        <input type="password" id="new-password" name="new-password" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Change Password" />
+                    </div>
+                </form>
+            </div>-->
+        </div>
+        <a href="home.php">
+            <button id="return-home-btn">Return to Home</button>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const changeUsernameBtn = document.getElementById("change-username-btn");
+            const changePasswordBtn = document.getElementById("change-password-btn");
+            const changePhotoBtn = document.getElementById("change-photo-btn");
+
+            const usernameForm = document.getElementById("username-form");
+            const passwordForm = document.getElementById("password-form");
+            const photoForm = document.getElementById("photo-form");
+
+            const usernameDisplay = document.getElementById("username-display");
+            const profilePicture = document.getElementById("profile-picture");
+
+            const returnHomeBtn = document.getElementById("return-home-btn");
+
+            function setActiveForm(formToShow) {
+                [usernameForm, passwordForm, photoForm].forEach(form => {
+                    form.classList.remove("active");
+                    form.style.display = "none";
+                });
+
+                formToShow.classList.add("active");
+                formToShow.style.display = "block";
+            }
+
+            changeUsernameBtn.addEventListener("click", () => {
+                setActiveForm(usernameForm);
+            });
+
+            changePhotoBtn.addEventListener("click", () => {
+                setActiveForm(photoForm);
+            });
+
+            changePasswordBtn.addEventListener("click", () => {
+                setActiveForm(passwordForm);
+            });
+
+            usernameForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const newUsername = document.getElementById("new-username").value.trim();
+                if (newUsername) {
+                    usernameDisplay.textContent = newUsername;
+                    localStorage.setItem("loggedInUser", JSON.stringify({ username: newUsername }));
+                    alert("Username changed successfully!");
+                }
+            });
+
+            photoForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const newPhoto = document.getElementById("new-photo").files[0];
+                if (newPhoto) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        profilePicture.src = e.target.result;
+                        localStorage.setItem("profilePicture", e.target.result);
+                        alert("Profile photo updated successfully!");
+                    };
+                    reader.readAsDataURL(newPhoto);
+                }
+            });
+
+            returnHomeBtn.addEventListener("click", () => {
+                window.location.href = "home.html";
+            });
+
+            // Load username and profile picture from localStorage if available
+            const savedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+            if (savedUser && savedUser.username) {
+                usernameDisplay.textContent = savedUser.username;
+            }
+
+            const savedProfilePicture = localStorage.getItem("profilePicture");
+            if (savedProfilePicture) {
+                profilePicture.src = savedProfilePicture;
+            }
+        });
+    </script>
+</body>
+</html>

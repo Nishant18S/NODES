@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Rural Education Initiative</title>
+    <link rel="icon" type="image/x-icon" href="EduNexusBg.png" />
+    <style>
+      /* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  background-image: linear-gradient(
+    to right,
+    rgb(240, 57, 57),
+    rgb(236, 38, 239)
+  );
+  color: #333;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, rgb(23, 23, 121), green);
+  color: white;
+  padding: 10px 0;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: headerAnimation 1.5s ease-in-out, gradientAnimation 5s infinite alternate;
+}
+
+@keyframes headerAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-image: linear-gradient(to right, rgb(23, 23, 121), green);
+  }
+  100% {
+    background-image: linear-gradient(to right, rgb(255, 0, 150), rgb(0, 204, 255));
+  }
+}
+
+.logo {
+  position: absolute;
+  left: 10px;
+  top: 2px;
+}
+
+.logo img {
+  height: 55px;
+}
+
+#about-us-header-title {
+  text-align: center;
+}
+
+.container {
+  width: 80%;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.section-title {
+  font-size: 28px;
+  color: #4caf50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards, colorTransition 3s infinite alternate;
+}
+
+.section-content {
+  font-size: 18px;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s forwards;
+}
+
+.highlight {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.mission {
+  font-size: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.4s forwards;
+}
+
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.team-member {
+  width: 40%;
+  background: #f9f9f9;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    to right bottom,
+    rgb(221, 36, 23),
+    rgb(28, 28, 243)
+  );
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  animation: teamMemberAnimation 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes teamMemberAnimation {
+  0% {
+    background-color: #f9f9f9;
+  }
+  100% {
+    background-color: #d9e4ec;
+  }
+}
+
+.team-member:hover {
+  transform: scale(1.05);
+  background-color: #ffcc00;
+}
+
+.team-member h3 {
+  font-size: 22px;
+  color: white;
+}
+
+.team-member p {
+  font-size: 16px;
+  color: #f9f9f9;
+}
+
+footer {
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-image: linear-gradient(
+    to right,
+    rgb(49, 114, 49),
+    rgb(255, 51, 0)
+  );
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2);
+  animation: footerAnimation 5s infinite alternate;
+}
+
+@keyframes footerAnimation {
+  0% {
+    background-image: linear-gradient(to right, rgb(49, 114, 49), rgb(255, 51, 0));
+  }
+  100% {
+    background-image: linear-gradient(to right, rgb(255, 102, 102), rgb(102, 204, 255));
+  }
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes colorTransition {
+  0% {
+    color: #4caf50;
+  }
+  100% {
+    color: #ff5722;
+  }
+}
+
+.colaborators {
+  width: 70%;
+  border-radius: 50%;
+}
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="EduNexusBg.png" alt="EduNexus Logo" />
+      </div>
+      <span id="about-us-header-title">About Us</span>
+    </header>
+
+    <div class="container">
+      <h2 class="section-title">Our Mission</h2>
+      <p class="section-content">
+        We are dedicated to improving education in rural areas by providing a
+        <span class="highlight">localized network</span> that connects students
+        and educational resources. Our mission is to ensure that every student,
+        regardless of their location will have access to quality education and
+        learning tools.
+      </p>
+
+      <h2 class="section-title">Our Goal</h2>
+      <p class="section-content">
+        Our goal is to bridge the education divided between urban and rural
+        areas by empowering rural communities with the tools and resources they
+        need to succeed. We aim to create a sustainable, scalable model for
+        localized education that can be replicated in rural areas across the
+        globe. By fostering collaboration among educators, students, and
+        communities, we strive to create an environment where every child has
+        the opportunity to reach their full potential, regardless of their
+        geographical location.
+      </p>
+
+      <h2 class="section-title">Why We Started</h2>
+      <p class="section-content">
+        In many rural areas, internet connectivity is limited or non-existent,
+        which significantly affects educational opportunities. We saw this gap
+        and decided to create a solution that leverages local networks to
+        provide educational content and resources, bypassing the need for a
+        constant internet connection, Because we believe
+        <span class="highlight">Knowledge is Everything.</span>
+      </p>
+
+      <h2 class="section-title">Special Thanks to Our Team</h2>
+      <div class="team">
+        <div class="team-member">
+          <img
+            src="EduNexus.png"
+            alt="colaborator image"
+            class="colaborators"
+          />
+          <h3>Shreyash Mohapatra</h3>
+          <p>Founder & CEO</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="ero.jpg"
+            alt="colaborator image"
+            class="colaborators"
+          />
+          <h3>Nishant Sankar Swain</h3>
+          <p>Chief Technology Officer</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="EduNexus.png"
+            alt="colaborator image"
+            class="colaborators"
+          />
+          <h3>Arpita Moharana</h3>
+          <p>Founder & CEO</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="EduNexus.png"
+            alt="colaborator image"
+            class="colaborators"
+          />
+          <h3>Pakhi Patni</h3>
+          <p>Chief Technology Officer</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="EduNexus.png"
+            alt="colaborator image"
+            class="colaborators"
+          />
+          <h3>Divya Sahu</h3>
+          <p>Founder & CEO</p>
+        </div>
+        <div class="team-member">
+          <img
+            src="EduNexus.png"
+            alt="colaborator image"
+            class="colaborators"
+          />
+          <h3>Roshan Mohapatra</h3>
+          <p>Chief Technology Officer</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Rural Education Initiative. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
